@@ -29,8 +29,11 @@ use VKAPI\Objects\Secondary\RelationPartner;
 use VKAPI\Objects\Secondary\Relative;
 use VKAPI\Objects\Secondary\School;
 use VKAPI\Objects\Secondary\University;
+use VKAPI\Traits\FillerTrait;
 
 class User {
+    use FillerTrait;
+
     readonly public int $id;
     readonly public string $first_name;
     readonly public string $last_name;
@@ -127,4 +130,29 @@ class User {
     readonly public ?array $universities;
     readonly public ?bool $verified;
     readonly public ?WallMode $wall_default;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'career' => [Career::class],
+            'city' => [Geo::class],
+            'contacts' => [Contacts::class],
+            'counters' => [Counters::class],
+            'country' => [Geo::class],
+            'crop_photo' => [CropPhoto::class],
+            'education' => [Education::class],
+            'friend_status' => [FriendStatus::class],
+            'last_seen' => [LastSeen::class],
+            'military' => [Military::class],
+            'occupation' => [Occupation::class],
+            'personal' => [Personal::class],
+            'relatives' => [Relative::class, NULL, true],
+            'relation' => [Relation::class],
+            'relation_partner' => [RelationPartner::class],
+            'schools' => [School::class, NULL, true],
+            'sex' => [Sex::class],
+            'timezone' => [CarbonTimeZone::class],
+            'universities' => [University::class, NULL, true],
+            'wall_default' => [WallMode::class],
+        ]);
+    }
 }

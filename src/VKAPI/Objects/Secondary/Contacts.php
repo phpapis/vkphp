@@ -10,7 +10,15 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class Contacts {
+    use FillerTrait;
+
     readonly public ?string $mobile_phone;
     readonly public ?string $home_phone;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

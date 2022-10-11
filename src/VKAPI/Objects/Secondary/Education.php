@@ -10,10 +10,18 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class Education {
+    use FillerTrait;
+
     readonly public int $university;
     readonly public string $university_name;
     readonly public int $faculty;
     readonly public string $faculty_name;
     readonly public int $graduation;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

@@ -11,9 +11,18 @@
 namespace VKAPI\Objects\Secondary;
 
 use VKAPI\Enums\OccupationType;
+use VKAPI\Traits\FillerTrait;
 
 class Occupation {
+    use FillerTrait;
+
     readonly public OccupationType $type;
     readonly public int $id;
     readonly public string $name;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'type' => [OccupationType::class],
+        ]);
+    }
 }

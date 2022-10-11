@@ -10,7 +10,15 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class Geo {
+    use FillerTrait;
+
     readonly public int $id;
     readonly public string $title;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

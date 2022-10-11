@@ -10,7 +10,15 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class RelationPartner {
+    use FillerTrait;
+
     readonly public int $id;
     readonly public string $name;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

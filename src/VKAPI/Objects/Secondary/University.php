@@ -10,7 +10,11 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class University {
+    use FillerTrait;
+
     readonly public int $id;
     readonly public int $country;
     readonly public int $city;
@@ -22,4 +26,8 @@ class University {
     readonly public int $graduation;
     readonly public string $education_form;
     readonly public string $education_status;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

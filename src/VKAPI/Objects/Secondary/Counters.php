@@ -10,7 +10,11 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class Counters {
+    use FillerTrait;
+
     readonly public int $albums;
     readonly public int $videos;
     readonly public int $audios;
@@ -23,4 +27,8 @@ class Counters {
     readonly public int $user_videos;
     readonly public int $followers;
     readonly public int $pages;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

@@ -11,9 +11,18 @@
 namespace VKAPI\Objects\Secondary;
 
 use VKAPI\Enums\RelativeType;
+use VKAPI\Traits\FillerTrait;
 
 class Relative {
+    use FillerTrait;
+
     readonly public ?int $id;
     readonly public string $name;
     readonly public RelativeType $type;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'type' => [RelativeType::class],
+        ]);
+    }
 }

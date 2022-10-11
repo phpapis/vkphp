@@ -12,8 +12,18 @@ namespace VKAPI\Objects\Secondary;
 
 use Carbon\Carbon;
 use VKAPI\Enums\Platform;
+use VKAPI\Traits\FillerTrait;
 
 class LastSeen {
+    use FillerTrait;
+
     readonly public Carbon $time;
     readonly public Platform $platform;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'time' => [Carbon::class, NULL, false, 'createFromTimestamp'],
+            'platform' => [Platform::class],
+        ]);
+    }
 }

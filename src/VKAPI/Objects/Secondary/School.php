@@ -11,8 +11,11 @@
 namespace VKAPI\Objects\Secondary;
 
 use VKAPI\Enums\SchoolType;
+use VKAPI\Traits\FillerTrait;
 
 class School {
+    use FillerTrait;
+
     readonly public string $id;
     readonly public int $country;
     readonly public int $city;
@@ -23,4 +26,10 @@ class School {
     readonly public string $class;
     readonly public string $speciality;
     readonly public SchoolType $type;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'type' => [SchoolType::class],
+        ]);
+    }
 }

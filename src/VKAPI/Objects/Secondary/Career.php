@@ -10,7 +10,11 @@
 
 namespace VKAPI\Objects\Secondary;
 
+use VKAPI\Traits\FillerTrait;
+
 class Career {
+    use FillerTrait;
+
     readonly public ?int $group_id;
     readonly public ?string $company;
     readonly public int $country_id;
@@ -19,4 +23,8 @@ class Career {
     readonly public int $from;
     readonly public int $until;
     readonly public string $position;
+
+    function __construct(object $object) {
+        $this->fillProperties($object);
+    }
 }

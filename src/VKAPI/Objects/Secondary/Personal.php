@@ -14,8 +14,11 @@ use VKAPI\Enums\Attitude;
 use VKAPI\Enums\LifeMain;
 use VKAPI\Enums\PeopleMain;
 use VKAPI\Enums\Political;
+use VKAPI\Traits\FillerTrait;
 
 class Personal {
+    use FillerTrait;
+
     readonly public ?Political $political;
     readonly public ?array $langs;
     readonly public ?string $religion;
@@ -24,4 +27,14 @@ class Personal {
     readonly public ?LifeMain $life_main;
     readonly public ?Attitude $smoking;
     readonly public ?Attitude $alcohol;
+
+    function __construct(object $object) {
+        $this->fillProperties($object, [
+            'political' => [Political::class],
+            'people_main' => [PeopleMain::class],
+            'life_main' => [LifeMain::class],
+            'smoking' => [Attitude::class],
+            'alcohol' => [Attitude::class],
+        ]);
+    }
 }
